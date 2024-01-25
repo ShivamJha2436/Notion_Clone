@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <Button variant="purple">
-        Click me
+        Delete
       </Button>
     </div>
   );
