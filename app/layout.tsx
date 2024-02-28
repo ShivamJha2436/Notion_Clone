@@ -39,7 +39,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexClientProvider>
-          <ThemeProvider 
+          <ThemeProvider
             attribute='class'
             defaultTheme='system'
             enableSystem
