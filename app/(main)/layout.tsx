@@ -23,7 +23,7 @@ const MainLayout = ({
   }  
 
   return (
-    <div>
+    <div className="h-full flex dark:bg-[]">
       {children}
     </div>
   );
