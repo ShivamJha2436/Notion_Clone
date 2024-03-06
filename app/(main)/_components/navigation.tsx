@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft } from "lucide-react";
+import { ChevronsLeft, MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -49,9 +49,13 @@ export const Navigation = () => {
         ref={navbarRef}
         className={cn(
           "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
+          isResetting && "transition-all ease-in-out duration-300",
+          isMobile && "left-0 w-full",
         )}
       >
-        
+        <nav>
+          {isCollapsed && <MenuIcon role="button" className="h-6 w-6 text-muted-foreground"/>}
+        </nav>
       </div>
     </>
   )
