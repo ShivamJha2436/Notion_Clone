@@ -33,7 +33,7 @@ export const Navigation = () => {
     let newWidth = event.clientX;
 
     if (newWidth < 240) newWidth = 240;
-    if (newWidth < 480) newWidth = 480;
+    if (newWidth > 480) newWidth = 480;
     
     if(sidebarRef.current && navbarRef.current) {
       sidebarRef.current.style.width = `${newWidth}px`;
@@ -46,6 +46,19 @@ export const Navigation = () => {
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
   };
+  const resetWidth = () =>{
+    if(sidebarRef.current && navbarRef.current) {
+      setIsResetting(true);
+      setIsCollapsed(false);
+
+      sidebarRef.current.style.width = isMobile ? "100%": "240px";
+      navbarRef.current.style.setProperty("width", isMobile ? "0" : "calc(100% - 240px)");
+      navbarRef.current.style.setProperty("left", isMobile ? "100%" : "240px");
+      setTimeout(() => {
+        setIsResetting(false);
+      }, 300);
+    }
+  }
 
   return (
     <>
@@ -74,7 +87,7 @@ export const Navigation = () => {
         </div>
         <div
           onMouseDown={handleMouseDown}
-          onClick={()=> {}}
+          onClick={resetWidth}
           className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
         />
       </aside>
