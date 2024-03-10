@@ -30,7 +30,8 @@ const DocumentsPage = () => {
         Welcome to {user?.firstName}&apos;s Notion
       </h2>
       <Button>
-        <PlusCircle/>
+        <PlusCircle className="h-4 w-4 mr-2"/>
+        Create a Note
       </Button>
     </div>
    );

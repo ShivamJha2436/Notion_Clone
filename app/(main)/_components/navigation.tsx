@@ -5,6 +5,7 @@ import { ChevronsLeft, MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { UserItem } from "./user-item";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -16,26 +17,26 @@ export const Navigation = () => {
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
-  useEffect(()=>{
-    if(isMobile){
+  useEffect(() => {
+    if (isMobile) {
       collapse();
-    } else{
+    } else {
       resetWidth();
     }
-  },[isMobile]);
+  }, [isMobile]);
 
   useEffect(() => {
-    if(isMobile){
+    if (isMobile) {
       collapse();
     }
   }, [pathname, isMobile]);
 
-  
+
 
   // handle resize
   const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent> 
-  ) =>{
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -50,8 +51,8 @@ export const Navigation = () => {
 
     if (newWidth < 240) newWidth = 240;
     if (newWidth > 480) newWidth = 480;
-    
-    if(sidebarRef.current && navbarRef.current) {
+
+    if (sidebarRef.current && navbarRef.current) {
       sidebarRef.current.style.width = `${newWidth}px`;
       navbarRef.current.style.setProperty("left", `${newWidth}px`);
       navbarRef.current.style.setProperty("width", `calc(100% - ${newWidth}px)`);
@@ -62,12 +63,13 @@ export const Navigation = () => {
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
   };
-  const resetWidth = () =>{
-    if(sidebarRef.current && navbarRef.current) {
+
+  const resetWidth = () => {
+    if (sidebarRef.current && navbarRef.current) {
       setIsResetting(true);
       setIsCollapsed(false);
 
-      sidebarRef.current.style.width = isMobile ? "100%": "240px";
+      sidebarRef.current.style.width = isMobile ? "100%" : "240px";
       navbarRef.current.style.setProperty("width", isMobile ? "0" : "calc(100% - 240px)");
       navbarRef.current.style.setProperty("left", isMobile ? "100%" : "240px");
       setTimeout(() => {
@@ -75,8 +77,8 @@ export const Navigation = () => {
       }, 300);
     }
   };
-  const collapse = () =>{
-    if(sidebarRef.current && navbarRef.current) {
+  const collapse = () => {
+    if (sidebarRef.current && navbarRef.current) {
       setIsCollapsed(true);
       setIsResetting(true);
       sidebarRef.current.style.width = "0";
@@ -109,7 +111,7 @@ export const Navigation = () => {
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
-          <p>Action Items</p>
+          <UserItem/>
         </div>
         <div className="mt-4">
           Documents
